@@ -7,6 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 // 在vue-cli创建的项目中  @的前缀 代表的是根路径 src目录
 // 默认会去加载索引文件  index.js index.vue index.json  必须是index  因为只解析index
 import router from '@/router'
+import axios from 'axios'
+Vue.prototype.$http = axios
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

@@ -2,21 +2,22 @@
   <div class="login-container">
     <el-card class="login_box">
       <img src="../../assets/images/logo_index.png" alt />
-      <el-form>
-        <el-form-item>
-          <el-input placeholder="请输入手机号"></el-input>
+      <!-- 表单 -->
+      <el-form ref="loginForm" status-icon :model="loginForm" :rules="loginRules">
+        <el-form-item prop="mobile">
+          <el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-input style="width:280px" placeholder="请输入验证码"></el-input>
+        <el-form-item prop="code">
+          <el-input v-model="loginForm.code" placeholder="请输入验证码" style="width:280px"></el-input>
           <el-button style="float:right">发送验证码</el-button>
         </el-form-item>
         <el-form-item>
           <el-checkbox v-model="checked"></el-checkbox>我已阅读并同意
-          <el-link :underline="false">用户协议</el-link> 和
-          <el-link :underline="false">隐私条约</el-link>
+          <el-link :underline="false" type="primary">用户协议</el-link>和
+          <el-link :underline="false" type="primary">隐私条款</el-link>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" style="width:100%">登录</el-button>
+          <el-button style="width:100%" type="primary" @click="login()">登 录</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -26,11 +27,63 @@
 <script>
 export default {
   data () {
+    // 定义约定 rule是校验的对象 value是字段的值 callback是回调的提示信息（函数）
+    const checkModile = (rule, value, callback) => {
+      // 校验逻辑
+      if (/^1[3-9]\d{9}$/.test(value)) {
+        callback()
+      } else {
+        callback(new Error('请输入正确的手机格式'))
+      }
+    }
     return {
-      // form: {
-      //   name: ''
-      // },
+      // 这是自己定义的
+      loginForm: {
+        // 这两个是从接口文档查的
+        // 设置默认登录值
+        mobile: '13911111111',
+        code: '246810'
+      },
+      // 表单的校验规则对象
+      loginRules: {
+        mobile: [
+          // 具体的校验规则  比如长度 格式
+          // required 必填项 message 失败后的提示信息
+          { required: true, message: '手机号必填', trigger: 'blur' },
+          { validator: checkModile, trigger: 'blur' }
+        ],
+        code: [
+          { required: true, message: '验证码必填', trigger: 'blur' },
+          { len: 6, message: '验证码必填', trigger: 'blur' }
+        ]
+      },
+      // 默认选中复选框
       checked: true
+    }
+  },
+  methods: {
+    login () {
+      // 通过this拿到$refs  可以拿到所有的dom
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          // 如果校验成功 进行登录
+          this.$http
+            .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations'
+              , this.loginForm)
+            .then((res) => {
+              // res是响应对象 包含响应数据
+              const data = res.data
+              // 后台返回的是json内容 已经转换成了对象
+              console.log(data)
+              // 登录成功后 1、跳转到首页 2、保存登录页
+              this.$router.push('/')
+            })
+            .catch(() => {
+              // 提示错误信息 使用组件 消息提示组件  $message是ui框架中自带的属性 直接使用即可
+              this.$message.Error('用户名或密码错误')
+            })
+        }
+      })
     }
   }
 }
@@ -61,7 +114,7 @@ export default {
     font-size: 15px;
     color: #409eff;
   }
-  .el-checkbox{
+  .el-checkbox {
     margin-right: 5px;
   }
 }
