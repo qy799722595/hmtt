@@ -68,9 +68,11 @@ export default {
         if (valid) {
           // 如果校验成功 进行登录
           this.$http
-            .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations'
-              , this.loginForm)
-            .then((res) => {
+            .post(
+              'http://ttapi.research.itcast.cn/mp/v1_0/authorizations',
+              this.loginForm
+            )
+            .then(res => {
               // res是响应对象 包含响应数据
               const data = res.data
               // 后台返回的是json内容 已经转换成了对象
@@ -78,9 +80,10 @@ export default {
               // 登录成功后 1、跳转到首页 2、保存登录页
               this.$router.push('/')
             })
-            .catch(() => {
+            .catch(err => {
               // 提示错误信息 使用组件 消息提示组件  $message是ui框架中自带的属性 直接使用即可
-              this.$message.Error('用户名或密码错误')
+              console.log(err)
+              this.$message.error('用户名或密码错误')
             })
         }
       })

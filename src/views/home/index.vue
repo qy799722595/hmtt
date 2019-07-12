@@ -7,38 +7,39 @@
           :collapse="collapse"  定义的是折叠收起  在ui框架中 默认的是true 也就是折叠 这里改成false 收起
          :collapse-transition="false"定义的是禁止动画效果 -->
       <el-menu
-        default-active="1"
+        default-active="/"
         background-color="#002033"
         text-color="#fff"
         active-text-color="#ffd04b"
         :collapse="collapse"
         :collapse-transition="false"
+        router
       >
-        <el-menu-item index="1">
+        <el-menu-item index="/">
           <i class="el-icon-s-home"></i>
           <span slot="title">首页</span>
         </el-menu-item>
-        <el-menu-item index="2">
+        <el-menu-item index="/contents">
           <i class="el-icon-document"></i>
           <span slot="title">内容管理</span>
         </el-menu-item>
-        <el-menu-item index="3">
+        <el-menu-item index="/sucai">
           <i class="el-icon-picture"></i>
           <span slot="title">素材管理</span>
         </el-menu-item>
-        <el-menu-item index="4">
+        <el-menu-item index="/wenzhang">
           <i class="el-icon-s-promotion"></i>
           <span slot="title">发布文章</span>
         </el-menu-item>
-        <el-menu-item index="5">
+        <el-menu-item index="/pinglun">
           <i class="el-icon-chat-dot-square"></i>
           <span slot="title">评论管理</span>
         </el-menu-item>
-        <el-menu-item index="6">
+        <el-menu-item index="/fans">
           <i class="el-icon-present"></i>
           <span slot="title">粉丝管理</span>
         </el-menu-item>
-        <el-menu-item index="7">
+        <el-menu-item index="/shezhi">
           <i class="el-icon-setting"></i>
           <span slot="title">个人设置</span>
         </el-menu-item>
@@ -56,9 +57,13 @@
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item class="el-icon-setting">个人设置</el-dropdown-item>
+            <!-- <div @click="fn()"> -->
+              <el-dropdown-item class="el-icon-setting">个人设置</el-dropdown-item>
+            <!-- </div> -->
             <br />
-            <el-dropdown-item class="el-icon-unlock">退出登录</el-dropdown-item>
+            <!-- <div> -->
+              <el-dropdown-item class="el-icon-unlock">退出登录</el-dropdown-item>
+            <!-- </div> -->
           </el-dropdown-menu>
         </el-dropdown>
       </el-header>
@@ -80,6 +85,10 @@ export default {
     qhcd () {
       this.collapse = !this.collapse
     }
+    // fn () {
+    //   // this.$router.push('/setting')
+    //   location.hash = '#/shezhi'
+    // }
   }
 }
 </script>
