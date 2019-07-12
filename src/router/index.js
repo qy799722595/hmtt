@@ -22,4 +22,20 @@ const router = new VueRouter({
   ]
 })
 
+// 注册一个全局的前置导航守卫
+router.beforeEach((to, from, next) => {
+  // 如果不去主动触发 resolve (next 下一步) 会一直等待
+  // console.log('ok')
+  // 如果是登录页 放行  如果去其他页面 拦截
+  // if(to.path === '/login') return next()
+  // const user = window.sessionStorage.getItem('hmtt')
+  // if (user) {
+  //   next()
+  // }else {
+  //   next('/login')
+  // }
+  const user = window.sessionStorage.getItem('hmtt')
+  if (to.path !== '/login' && !user) return next('/login')
+  next()
+})
 export default router

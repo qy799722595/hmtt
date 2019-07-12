@@ -78,6 +78,9 @@ export default {
               // 后台返回的是json内容 已经转换成了对象
               console.log(data)
               // 登录成功后 1、跳转到首页 2、保存登录页
+              // 2.1保存登录后返回的用户信息 包含token
+              // 2.2使用sessionStrage 来存储
+              window.sessionStorage.setItem('hmtt', JSON.stringify(res.data.data))
               this.$router.push('/')
             })
             .catch(err => {
