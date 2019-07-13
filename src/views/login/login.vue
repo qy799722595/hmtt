@@ -69,7 +69,7 @@ export default {
           // 如果校验成功 进行登录
           this.$http
             .post(
-              'http://ttapi.research.itcast.cn/mp/v1_0/authorizations',
+              'authorizations',
               this.loginForm
             )
             .then(res => {
@@ -79,7 +79,7 @@ export default {
               console.log(data)
               // 登录成功后 1、跳转到首页 2、保存登录页
               // 2.1保存登录后返回的用户信息 包含token
-              // 2.2使用sessionStrage 来存储
+              // 2.2使用sessionStrage.setItem 来存储数据
               window.sessionStorage.setItem('hmtt', JSON.stringify(res.data.data))
               this.$router.push('/')
             })

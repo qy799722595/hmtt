@@ -57,16 +57,17 @@
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <!-- <div @click="fn()"> -->
+            <div @click="fn()">
               <el-dropdown-item class="el-icon-setting">个人设置</el-dropdown-item>
-            <!-- </div> -->
-            <br />
-            <!-- <div> -->
+            </div>
+            <!-- <br /> -->
+            <div>
               <el-dropdown-item class="el-icon-unlock">退出登录</el-dropdown-item>
-            <!-- </div> -->
+            </div  >
           </el-dropdown-menu>
         </el-dropdown>
       </el-header>
+      <!-- 内容区 -->
       <!-- <el-main>Main</el-main> -->
       <!-- 二级路由对应的组件 -->
       <router-view></router-view>
@@ -84,11 +85,11 @@ export default {
   methods: {
     qhcd () {
       this.collapse = !this.collapse
+    },
+    fn () {
+      // this.$router.push('/setting')
+      location.hash = '#/shezhi'
     }
-    // fn () {
-    //   // this.$router.push('/setting')
-    //   location.hash = '#/shezhi'
-    // }
   }
 }
 </script>
