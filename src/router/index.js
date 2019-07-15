@@ -7,6 +7,7 @@ import Welcome from '@/views/welcome'
 import Cwxx from '@/views/404'
 import Fans from '@/views/fans'
 import Shezhi from '@/views/shezhi'
+import Contents from '@/views/contents'
 Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
@@ -19,7 +20,8 @@ const router = new VueRouter({
       children: [
         { name: 'welcome', path: '/', component: Welcome },
         { name: 'fans', path: '/fans', component: Fans },
-        { name: 'shezhi', path: '/shezhi', component: Shezhi }
+        { name: 'shezhi', path: '/shezhi', component: Shezhi },
+        { name: 'contents', path: '/contents', component: Contents }
 
       ]
     },

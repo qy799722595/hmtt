@@ -1,11 +1,23 @@
 // 封装axios
 import axios from 'axios'
+import JSONBig from 'json-bigint'
 
 const instance = axios.create({
-  baseURL: 'http://ttapi.research.itcast.cn/mp/v1_0/'
+  baseURL: 'http://ttapi.research.itcast.cn/mp/v1_0/',
   // Headers: {
   //   Authorization: 'Bearer ' + JSON.parse(window.sessionStorage.getItem('hmtt')).token
   // }
+  // 这是处理js最大安全值的
+  transformResponse: [(data) => {
+    // 处理格式
+    // data中可能没有数据  可能为null
+    // 后台接口没有数据传输过来,jsonbig没有数据可以转换 转换空 有可能会报错
+    // 所以要严谨判断  判断一下 如果有数据进行数据转换  没有数据则直接return
+    if (data) {
+      return JSONBig.parse(data)
+    }
+    return data
+  }]
 })
 
 // 请求拦截器
@@ -32,7 +44,9 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(response => {
   return response
 }, error => {
-  if (error.response.status === 401) {
+  // 如果响应状态码是 401 拦截到登录页面
+  // error.response.status 状态码
+  if (error.response && error.response.status === 401) {
     location.hash = '#/login'
   }
   // console.dir(error)

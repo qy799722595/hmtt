@@ -64,30 +64,43 @@ export default {
   methods: {
     login () {
       // 通过this拿到$refs  可以拿到所有的dom
-      this.$refs.loginForm.validate(valid => {
+      // this.$refs.loginForm.validate(valid => {
+      //   if (valid) {
+      //     // 如果校验成功 进行登录
+      //     this.$http
+      //       .post(
+      //         'authorizations',
+      //         this.loginForm
+      //       )
+      //       .then(res => {
+      //         // res是响应对象 包含响应数据
+      //         const data = res.data
+      //         // 后台返回的是json内容 已经转换成了对象
+      //         console.log(data)
+      //         // 登录成功后 1、跳转到首页 2、保存登录页
+      //         // 2.1保存登录后返回的用户信息 包含token
+      //         // 2.2使用sessionStrage.setItem 来存储数据
+      //         window.sessionStorage.setItem('hmtt', JSON.stringify(res.data.data))
+      //         this.$router.push('/')
+      //       })
+      //       .catch(err => {
+      //         // 提示错误信息 使用组件 消息提示组件  $message是ui框架中自带的属性 直接使用即可
+      //         console.log(err)
+      //         this.$message.error('用户名或密码错误')
+      //       })
+      //   }
+      // })
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
-          // 如果校验成功 进行登录
-          this.$http
-            .post(
-              'authorizations',
-              this.loginForm
-            )
-            .then(res => {
-              // res是响应对象 包含响应数据
-              const data = res.data
-              // 后台返回的是json内容 已经转换成了对象
-              console.log(data)
-              // 登录成功后 1、跳转到首页 2、保存登录页
-              // 2.1保存登录后返回的用户信息 包含token
-              // 2.2使用sessionStrage.setItem 来存储数据
-              window.sessionStorage.setItem('hmtt', JSON.stringify(res.data.data))
-              this.$router.push('/')
-            })
-            .catch(err => {
-              // 提示错误信息 使用组件 消息提示组件  $message是ui框架中自带的属性 直接使用即可
-              console.log(err)
-              this.$message.error('用户名或密码错误')
-            })
+          // 当接口调用失败的时候 以下代码出现异常、
+          // try/ catch  是js语法 是处理异常的语法 try{ 代码 }catch（err）{ 业务逻辑失败 调用catch，进行错误处理 }
+          try {
+            const res = await this.$http.post('authorizations', this.loginForm)
+            window.sessionStorage.setItem('hmtt', JSON.stringify(res.data.data))
+            this.$router.push('/')
+          } catch (err) {
+            this.$message.error('用户名或密码错误')
+          }
         }
       })
     }

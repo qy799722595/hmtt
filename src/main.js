@@ -8,6 +8,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 // 默认会去加载索引文件  index.js index.vue index.json  必须是index  因为只解析index
 import router from '@/router'
 import axios from '@/api/axios'
+import components from '@/components'
+Vue.use(components)
 // // defaults是配置   基准路径
 // axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0/'
 // // 请求头
@@ -15,6 +17,7 @@ import axios from '@/api/axios'
 //   // token认证需要的字段 值： 注意要加上个前缀 Bearer 注意；bearer后面有一个空格
 //   Authorization: 'Bearer ' + JSON.parse(window.sessionStorage.getItem('hmtt')).token
 // }
+
 Vue.prototype.$http = axios
 Vue.use(ElementUI)
 Vue.config.productionTip = false
