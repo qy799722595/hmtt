@@ -1,6 +1,10 @@
 <template>
   <div class="fans-container">
-    粉丝管理
+    <el-card>
+      <div slot="header">
+        <my-bread>粉丝管理</my-bread>
+      </div>
+    </el-card>
   </div>
 </template>
 

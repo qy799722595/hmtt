@@ -29,7 +29,7 @@ export default {
   data () {
     // 定义约定 rule是校验的对象 value是字段的值 callback是回调的提示信息（函数）
     const checkModile = (rule, value, callback) => {
-      // 校验逻辑
+      // 校验逻辑 .test是正则中的方法
       if (/^1[3-9]\d{9}$/.test(value)) {
         callback()
       } else {

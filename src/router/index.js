@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 import Login from '@/views/login/login.vue'
 import Home from '@/views/home'
 import Welcome from '@/views/welcome'
@@ -8,6 +7,9 @@ import Cwxx from '@/views/404'
 import Fans from '@/views/fans'
 import Shezhi from '@/views/shezhi'
 import Contents from '@/views/contents'
+import Sucai from '@/views/sucai'
+import Wenzhang from '@/views/wenzhang'
+import Pinglun from '@/views/pinglun'
 Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
@@ -21,8 +23,10 @@ const router = new VueRouter({
         { name: 'welcome', path: '/', component: Welcome },
         { name: 'fans', path: '/fans', component: Fans },
         { name: 'shezhi', path: '/shezhi', component: Shezhi },
-        { name: 'contents', path: '/contents', component: Contents }
-
+        { name: 'contents', path: '/contents', component: Contents },
+        { name: 'sucai', path: '/sucai', component: Sucai },
+        { name: 'wenzhang', path: '/wenzhang', component: Wenzhang },
+        { name: 'pinglun', path: '/pinglun', component: Pinglun }
       ]
     },
     { name: '404', path: '*', component: Cwxx }

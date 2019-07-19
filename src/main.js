@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import router from '@/router'
 import axios from '@/api/axios'
 import components from '@/components'
+import '@/styles/index.less'
 Vue.use(components)
 // // defaults是配置   基准路径
 // axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0/'

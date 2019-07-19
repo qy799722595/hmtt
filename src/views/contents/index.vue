@@ -18,14 +18,15 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="频道：">
-          <el-select v-model="reqParams.channel_id">
+          <!-- <el-select v-model="reqParams.channel_id">
             <el-option
               v-for="item in channelOptions"
               :key="item.id"
               :label="item.name"
               :value="item.id"
             ></el-option>
-          </el-select>
+          </el-select> -->
+          <my-channel v-model="reqParams.channel_id"></my-channel>
         </el-form-item>
         <el-form-item label="时间：">
           <el-date-picker
@@ -100,8 +101,7 @@ export default {
         begin_pubdate: null,
         end_pubdare: null
       },
-      // 默认频道数据
-      channelOptions: [],
+
       // 日期控件数据
       dataValues: [],
       // 文章列表
@@ -111,20 +111,10 @@ export default {
     }
   },
   created () {
-    // 获取频道数据
-    this.getChannelOptions()
     // 获取列表数据
     this.getContents()
   },
   methods: {
-    async getChannelOptions () {
-      // const o = { data: {} }; const {data}=o  一层解构 对象的结构一层
-      // 二层解构  const res = {data:{data:{channel:[]}}} 多个结构 const {data:{data}}
-      const {
-        data: { data }
-      } = await this.$http.get('channels')
-      this.channelOptions = data.channels
-    },
     async getContents () {
       const {
         data: { data }

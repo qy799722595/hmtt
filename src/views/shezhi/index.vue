@@ -1,6 +1,10 @@
 <template>
-  <div id="app">
-    个人设置
+  <div class="fans-container">
+    <el-card>
+      <div slot="header">
+        <my-bread>个人设置</my-bread>
+      </div>
+    </el-card>
   </div>
 </template>
 
