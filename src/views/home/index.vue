@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import eventBus from '@/eventBus'
 export default {
   data () {
     return {
@@ -94,6 +95,15 @@ export default {
     // 获取user的name信息和图片信息  然后在黑马小哥添加插值表达式 {{name}}  图片的src改成avatar  注意要给src加:号 绑定src
     this.name = user.name
     this.avatar = user.photo
+
+    // 绑定事件
+    eventBus.$on('updateHeaderName', name => {
+      this.name = name
+    })
+    // 绑定事件
+    eventBus.$on('updateHeaderphoto', photo => {
+      this.name = photo
+    })
   },
   methods: {
     qhcd () {

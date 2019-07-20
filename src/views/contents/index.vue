@@ -84,7 +84,7 @@
       <el-pagination
         background
         layout="prev, pager, next"
-        @current-change="cahngePager"
+        @current-change="changePager"
         :total="total"
       ></el-pagination>
     </div>
@@ -132,7 +132,7 @@ export default {
     search () {
       this.getContents()
     },
-    cahngePager (newPage) {
+    changePager (newPage) {
       // newPage 当前点击的按钮的页码
       // 更新提交给后台的参数
       this.reqParams.page = newPage
