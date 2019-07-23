@@ -55,7 +55,7 @@
           <template slot-scope="scope">
             <!-- {{ scope.row.cover.images[0] }} -->
             <el-image :src="scope.row.cover.images[0]" style="width:100px;height:75px">
-              <div slot="error" class="image-slot">
+              <div slot="error">
                 <img src="../../assets/images/error.gif" width="100" height="75" alt /> >
               </div>
             </el-image>
@@ -72,7 +72,7 @@
           </template>
         </el-table-column>
         <el-table-column label="发布时间" prop="pubdate"></el-table-column>
-        <el-table-column label="操作" width="120px">
+        <el-table-column label="操作" width="160px">
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" circle plain @click="edit(scope.row.id)"></el-button>
             <el-button type="danger" icon="el-icon-delete" circle plain @click="del(scope.row.id)"></el-button>

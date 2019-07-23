@@ -2,7 +2,7 @@
   <div class="container">
     <el-card>
       <div slot="header">
-        <my-bread>内容管理</my-bread>
+        <my-bread>评论管理</my-bread>
       </div>
       <el-table :data="comments">
         <el-table-column prop="title" label="标题"></el-table-column>
