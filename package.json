@@ -13,7 +13,7 @@
     "echarts": "^4.2.1",
     "element-ui": "^2.10.1",
     "install": "^0.13.0",
-    "json-bigint": "^0.3.0",
+    "json-bigint": "^1.0.0",
     "npm": "^6.10.1",
     "vue": "^2.6.10",
     "vue-quill-editor": "^3.0.6",
